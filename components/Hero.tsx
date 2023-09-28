@@ -56,7 +56,10 @@ const Hero = () => {
             far={4.5}
           />
           <Suspense fallback={<Loader />}>
-            <Laptop scale={laptopScale} isOpen={open} />
+            <Laptop
+              scale={size.width! > 700 ? laptopScale : [5, 5, 5]}
+              isOpen={open}
+            />
             <Environment preset={"sunset"} />
           </Suspense>
         </Canvas>
