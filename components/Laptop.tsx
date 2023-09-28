@@ -31,8 +31,8 @@ type GLTFResult = GLTF & {
 
 const variantBody: Variants = {
   visible: {
-    rotateZ: Math.PI / 7,
-    y: -Math.PI / 60,
+    rotateZ: Math.PI / 12,
+    y: -Math.PI / 50,
   },
   hidden: {},
 };
@@ -40,15 +40,9 @@ const variantBody: Variants = {
 const variantScreen: Variants = {
   visible: {
     rotateZ: Math.PI / 90,
+    y: -Math.PI / 150,
   },
   hidden: {},
-};
-
-const variantScreenHovered: Variants = {
-  visible: {
-    rotateZ: Math.PI / 90,
-  },
-  hidden: { rotateZ: Math.PI / 2.4 },
 };
 
 export function Laptop(
@@ -102,12 +96,13 @@ export function Laptop(
                         />
                       </motion.group>
                       <motion.group
+                        whileHover={{
+                          rotateZ: Math.PI / 2.4,
+                        }}
                         name="Screen"
                         position={[0.121, 0.007, 0]}
                         rotation={[0, 0, 1.573]}
-                        variants={
-                          hovered ? variantScreenHovered : variantScreen
-                        }
+                        variants={variantScreen}
                         initial="hidden"
                         animate={props.isOpen ? "visible" : "hidden"}
                         transition={{

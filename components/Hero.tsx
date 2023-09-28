@@ -4,16 +4,28 @@
 import React, { Suspense, useState } from "react";
 import { Loader, Laptop } from "./Laptop";
 import {
-  Bounds,
   ContactShadows,
   Environment,
   OrbitControls,
   Preload,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import useWindowSize from "../hooks/useWindowSize";
 
-const Intro = () => {
+type Vector3 = [number, number, number];
+
+const Hero = () => {
   const [open, setOpen] = useState(false);
+  const size = useWindowSize();
+
+  const BASE_WIDTH = 1000;
+  const scaleFactor = size.width ? size.width / BASE_WIDTH : 1;
+
+  const laptopScale: Vector3 = [
+    7 * scaleFactor,
+    7 * scaleFactor,
+    7 * scaleFactor,
+  ];
 
   return (
     <>
@@ -44,10 +56,8 @@ const Intro = () => {
             far={4.5}
           />
           <Suspense fallback={<Loader />}>
-            <Bounds fit observe>
-              <Laptop scale={[7, 7, 7]} isOpen={open} />
-              <Environment preset={"sunset"} />
-            </Bounds>
+            <Laptop scale={laptopScale} isOpen={open} />
+            <Environment preset={"sunset"} />
           </Suspense>
         </Canvas>
       </div>
@@ -55,4 +65,4 @@ const Intro = () => {
   );
 };
 
-export default Intro;
+export default Hero;

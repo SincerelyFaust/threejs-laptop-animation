@@ -1,12 +1,12 @@
 import React from "react";
 import type { NextPage } from "next";
-import Intro from "../components/Intro";
+import Hero from "../components/Hero";
 
 const Index: NextPage = () => {
   return (
     <>
       <div className="w-screen h-screen overflow-hidden">
-        <Intro />
+        <Hero />
       </div>
     </>
   );
